@@ -1,6 +1,7 @@
 require('dotenv').config();
 const { Telegraf, Markup } = require('telegraf');
 const fs = require('fs');
+const http = require('http'); // 1. Added HTTP Module
 
 // ==================================================================
 // ⚠️ CONFIGURATION
@@ -515,6 +516,18 @@ async function resolveRound(gameId) {
     setTimeout(() => startRound(gameId), 4000);
 }
 
+// ==================================================================
+// 🏥 HEALTH CHECK (HTTP SERVER)
+// ==================================================================
+const PORT = process.env.PORT || 8000;
+http.createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('Snowstorm Bot is running!');
+}).listen(PORT, () => console.log(`🏥 Health check running on port ${PORT}`));
+
+// ==================================================================
+// 🚀 LAUNCH
+// ==================================================================
 bot.launch().then(() => console.log("🤖 Snowstorm Bot Running..."));
 process.once('SIGINT', () => bot.stop('SIGINT'));
 process.once('SIGTERM', () => bot.stop('SIGTERM'));
