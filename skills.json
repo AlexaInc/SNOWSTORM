@@ -1,0 +1,64 @@
+{
+  "bandage": {
+    "name": "🩹 Bandage",
+    "cost": 300,
+    "desc": "Heals 30 HP. Basic survival.",
+    "type": "heal",
+    "val": 30
+  },
+  "medkit": {
+    "name": "💉 Medkit",
+    "cost": 1000,
+    "desc": "Heals 60 HP. Reliable.",
+    "type": "heal",
+    "val": 60
+  },
+  "injector": {
+    "name": "💊 Stim Injector",
+    "cost": 3500,
+    "desc": "Heals 100 HP instantly.",
+    "type": "heal",
+    "val": 100
+  },
+  "shiv": {
+    "name": "🔪 Rusty Shiv",
+    "cost": 600,
+    "desc": "Deals 35 DMG. Cheap & nasty.",
+    "type": "atk",
+    "val": 35
+  },
+  "grenade": {
+    "name": "💣 Frag Grenade",
+    "cost": 2000,
+    "desc": "Deals 55 DMG. Explosive power.",
+    "type": "atk",
+    "val": 55
+  },
+  "sniper": {
+    "name": "🎯 AWP Sniper",
+    "cost": 5000,
+    "desc": "Deals 85 DMG. Almost lethal.",
+    "type": "atk",
+    "val": 85
+  },
+  "rpg": {
+    "name": "🚀 Golden RPG",
+    "cost": 12000,
+    "desc": "Deals 99 DMG. One shot kill.",
+    "type": "atk",
+    "val": 99
+  },
+  "bunker": {
+    "name": "🧱 Titanium Bunker",
+    "cost": 2500,
+    "desc": "Immune to Storm Damage this round.",
+    "type": "buff"
+  },
+  "radar": {
+    "name": "📡 Satellite Link",
+    "cost": 4000,
+    "desc": "Guaranteed Supply Drop (+70 HP).",
+    "type": "buff",
+    "val": 70
+  }
+}
