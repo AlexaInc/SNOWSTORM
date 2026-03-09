@@ -16,7 +16,10 @@ const User = mongoose.model('User', userSchema);
 async function connectDB() {
     if (!MONGO_URL) return false;
     try {
-        await mongoose.connect(MONGO_URL);
+        await mongoose.connect(MONGO_URL, {
+            serverSelectionTimeoutMS: 5000,
+            socketTimeoutMS: 45000,
+        });
         console.log("✅ Connected to MongoDB!");
         return true;
     } catch (error) {

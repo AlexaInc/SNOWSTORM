@@ -28,7 +28,7 @@ if (fs.existsSync(SETTINGS_FILE)) {
 async function loadMongoData() {
     if (!MONGO_URL) return;
     try {
-        const users = await User.find({});
+        const users = await User.find({}).maxTimeMS(5000);
         users.forEach(u => {
             let inv = {};
             if (u.inventory) {
@@ -45,7 +45,7 @@ async function loadMongoData() {
         });
         console.log("✅ Synced game data from MongoDB");
     } catch (e) {
-        console.error("❌ Failed to sync from MongoDB", e.message);
+        console.error("❌ Failed to sync from MongoDB (Skipping). Error:", e.message);
     }
 }
 

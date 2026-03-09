@@ -1,11 +1,22 @@
 require('dotenv').config();
 const { Telegraf } = require('telegraf');
+const { HttpsProxyAgent } = require('https-proxy-agent');
 const { BOT_TOKEN } = require('./config');
 const startServer = require('./server');
 const { connectDB } = require('./db');
 const { loadMongoData, t, getLang } = require('./data');
 
-const bot = new Telegraf(BOT_TOKEN);
+const proxyUrl = process.env.HTTPS_PROXY || process.env.HTTP_PROXY;
+const botOptions = {};
+
+if (proxyUrl) {
+    botOptions.telegram = {
+        agent: new HttpsProxyAgent(proxyUrl)
+    };
+    console.log(`🔌 Using Proxy: ${proxyUrl}`);
+}
+
+const bot = new Telegraf(BOT_TOKEN, botOptions);
 
 // Load Modules
 require('./shop')(bot);
@@ -36,8 +47,12 @@ bot.command('help', (ctx) => {
 // Initialization
 async function start() {
     console.log("⏳ Initializing database...");
-    await connectDB();
-    await loadMongoData();
+    const connected = await connectDB();
+    if (connected) {
+        await loadMongoData();
+    } else {
+        console.log("⚠️ Playing in local JSON mode because MongoDB connection failed or is not configured.");
+    }
 
     console.log("🚀 Starting Web Leaderboard Server...");
     startServer();
