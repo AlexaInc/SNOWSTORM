@@ -26,7 +26,7 @@ function startServer() {
         res.json(players.slice(0, 100));
     });
 
-    app.listen(PORT, () => {
+    app.listen(PORT, '0.0.0.0', () => {
         console.log(`🌐 Web Leaderboard running at http://localhost:${PORT}`);
     });
 }
