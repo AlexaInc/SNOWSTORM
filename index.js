@@ -64,7 +64,13 @@ async function start() {
 
     try {
         console.log("🤖 Launching Telegram Bot...");
+        // Add error handler before launch to catch polling errors
+        bot.catch((err, ctx) => {
+            console.error(`❌ Ooops, encountered an error for ${ctx.updateType}`, err);
+        });
+
         await bot.launch();
+        console.log("✅ Bot is actively polling for messages!");
     } catch (e) {
         console.error("❌ Telegram Bot failed to launch:", e.message);
         console.error("Make sure your server/Hugging Face Space has internet access to api.telegram.org");
