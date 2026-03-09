@@ -1,0 +1,215 @@
+/* Base variables for premium dark theme */
+:root {
+    --bg-color: #0d131f;
+    --panel-bg: rgba(26, 35, 50, 0.6);
+    --panel-border: rgba(255, 255, 255, 0.08);
+    --text-main: #f0f4f8;
+    --text-muted: #8b9fb6;
+    --accent-blue: #00e1ff;
+    --accent-glow: rgba(0, 225, 255, 0.4);
+    --gold: #ffd700;
+    --silver: #c0c0c0;
+    --bronze: #cd7f32;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Atmospheric effects */
+.background-effects {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at 50% 0%, #1a2a44 0%, var(--bg-color) 70%);
+}
+
+.snow-layer {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="white" opacity="0.3"/></svg>');
+    background-size: 50px 50px;
+    animation: snowFront 10s linear infinite;
+}
+.layer2 { background-size: 100px 100px; animation-duration: 20s; opacity: 0.5; }
+.layer3 { background-size: 200px 200px; animation-duration: 30s; opacity: 0.2; }
+
+@keyframes snowFront {
+    0% { transform: translateY(-100px) }
+    100% { transform: translateY(100vh) }
+}
+
+/* Layout layout container */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+header {
+    text-align: center;
+    position: relative;
+    padding-bottom: 2rem;
+}
+
+.logo-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.icon {
+    font-size: 3rem;
+    filter: drop-shadow(0 0 10px var(--accent-glow));
+    animation: pulse 3s infinite ease-in-out;
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #fff 0%, #8caee6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Glassmorphism Panel */
+.leaderboard-wrapper {
+    background: var(--panel-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--panel-border);
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+/* Table Grid System */
+.table-header, .player-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 120px 100px 100px;
+    align-items: center;
+    padding: 1.25rem 2rem;
+}
+
+@media (max-width: 600px) {
+    .table-header, .player-row { grid-template-columns: 60px 1fr 80px; padding: 1rem;}
+    .stats:nth-child(n+4) { display: none; } /* Hide wins/kills on mobile */
+}
+
+/* Headers */
+.table-header {
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid var(--panel-border);
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.table-body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Rows */
+.player-row {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    animation: fadeIn 0.5s ease-out forwards;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.player-row:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    z-index: 10;
+    position: relative;
+}
+
+/* Columns */
+.col { text-align: left; }
+.col.stats { text-align: right; font-variant-numeric: tabular-nums; }
+.col.rank { text-align: center; font-weight: 800; font-size: 1.2rem; color: var(--text-muted); }
+
+.player {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* Rank Styling (Top 3) */
+.rank-1 .rank { color: var(--gold); text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+.rank-2 .rank { color: var(--silver); text-shadow: 0 0 10px rgba(192, 192, 192, 0.5); }
+.rank-3 .rank { color: var(--bronze); text-shadow: 0 0 10px rgba(205, 127, 50, 0.5); }
+
+/* Value Highlighting */
+.player-row .stats.points {
+    color: var(--accent-blue);
+    font-weight: 800;
+    text-shadow: 0 0 8px rgba(0, 225, 255, 0.3);
+}
+
+.player-row .stats.wins { color: #50fa7b; }
+.player-row .stats.kills { color: #ff5555; }
+
+/* Utilities */
+.loading {
+    padding: 3rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+    animation: pulse 1.5s infinite;
+}
+
+footer {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}

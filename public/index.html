@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snowstorm Leaderboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-effects">
+        <div class="snow-layer layer1"></div>
+        <div class="snow-layer layer2"></div>
+        <div class="snow-layer layer3"></div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <span class="icon">❄️</span>
+                <h1>Snowstorm</h1>
+            </div>
+            <p class="subtitle">Top Survivors Leaderboard</p>
+        </header>
+        
+        <main>
+            <div class="leaderboard-wrapper">
+                <div class="table-header">
+                    <div class="col rank">Rank</div>
+                    <div class="col player">Survivor</div>
+                    <div class="col stats">Points</div>
+                    <div class="col stats">Wins</div>
+                    <div class="col stats">Kills</div>
+                </div>
+                
+                <div id="leaderboard-body" class="table-body">
+                    <!-- Data will be populated here via JavaScript -->
+                    <div class="loading">Loading survivors...</div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Can you survive the storm?</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

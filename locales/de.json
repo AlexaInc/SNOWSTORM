@@ -1,0 +1,38 @@
+{
+  "lang_set": "✅ Sprache auf **Deutsch** gesetzt!",
+  "game_active": "⚠️ *Hier läuft bereits ein Spiel.*",
+  "game_intro": "🌨 *SCHNEESTURM-SCHLACHT*\n\n⚡ **Taktikmodus:** Items werden verbraucht.\n💀 **Schnitter:** Schlag in Runde 5.\n\n⏳ **Anmeldung:** 90s",
+  "join_btn": "🔥 Beitreten (PM)",
+  "start_btn": "▶️ Start erzwingen",
+  "joined": "✅ *{title} beigetreten!*\n❤️ LP: {hp}",
+  "inventory_empty": "⚠️ **Inventar leer:** Kaufe Items mit /shop!",
+  "not_enough": "❌ **Nicht genug Spieler (Min 2).**",
+  "storm_started": "🌪 *STURM GESTARTET!*\n\nPrüfe deine DMs!",
+  "check_dm_btn": "📩 DM prüfen",
+  "round_title": "❄️ *RUNDE {round}*\nTemp: -{temp}°C",
+  "santa_visit": "\n🎅 *WEIHNACHTSMANN WAR DA!*",
+  "santa_shield_dm": "🎅 Du hast ein Schild erhalten!",
+  "santa_wine_dm": "🎅 Du hast Wein erhalten!",
+  "santa_shield_log": "🛡️ {name} bekam ein Schild!",
+  "santa_wine_log": "🍷 {name} bekam Wein (+25 LP)!",
+  "play_turn_btn": "📩 Zug spielen",
+  "time_left": "⏳ **Schnell! Sturm in {time}s!**\n👥 *Spieler ({count}):*\n{names}",
+  "extended": "⏳ *+30s verlängert* (Total: {time}s)",
+  "cancelled": "🚫 *Spiel abgebrochen.*",
+  "hp_tag": "❤️ LP:",
+
+  "btn_fire": "🔥 Feuer machen",
+  "btn_loot": "🎒 Plündern",
+  "btn_attack": "☃️ Basisangriff",
+  "btn_skills": "⚡ Fähigkeiten",
+  "btn_back": "🔙 Zurück",
+
+  "act_fire": "✅ *Feuer gebaut!*\n🔥 +{val} LP.",
+  "act_loot": "✅ *Beute gefunden!*\n💚 +{val} LP.",
+  "act_ambush": "⚠️ *Hinterhalt!*\n🐺 Wolfangriff! -{val} LP.",
+  "act_wait": "🔥 *Holz sammeln...*",
+  "act_search": "🎒 *Suchen...*",
+
+  "game_over": "☠️ *SPIEL ENDE*",
+  "winner": "🏆 *GEWINNER!*\n\n👑 {name} hat überlebt!\n💎 **+200 Punkte**"
+}

@@ -1,0 +1,113 @@
+{
+  "hotcocoa": {
+    "name": "☕ Hot Cocoa",
+    "cost": 150,
+    "desc": "Heals 20 HP. Sweet and warm.",
+    "type": "heal",
+    "val": 20
+  },
+  "bandage": {
+    "name": "🩹 Bandage",
+    "cost": 300,
+    "desc": "Heals 30 HP. Basic survival.",
+    "type": "heal",
+    "val": 30
+  },
+  "syringe": {
+    "name": "💉 Adrenaline Syringe",
+    "cost": 500,
+    "desc": "Heals 45 HP. Gives you a kick.",
+    "type": "heal",
+    "val": 45
+  },
+  "medkit": {
+    "name": "⚕️ Medkit",
+    "cost": 1000,
+    "desc": "Heals 60 HP. Reliable.",
+    "type": "heal",
+    "val": 60
+  },
+  "injector": {
+    "name": "💊 Stim Injector",
+    "cost": 3500,
+    "desc": "Heals 100 HP instantly.",
+    "type": "heal",
+    "val": 100
+  },
+  "magicbeans": {
+    "name": "🫘 Magic Beans",
+    "cost": 8000,
+    "desc": "Heals 200 HP. Are these legal?",
+    "type": "heal",
+    "val": 200
+  },
+  "dart": {
+    "name": "🎯 Poison Dart",
+    "cost": 400,
+    "desc": "Deals 25 DMG. Silent but deadly.",
+    "type": "atk",
+    "val": 25
+  },
+  "shiv": {
+    "name": "🔪 Rusty Shiv",
+    "cost": 600,
+    "desc": "Deals 35 DMG. Cheap & nasty.",
+    "type": "atk",
+    "val": 35
+  },
+  "crossbow": {
+    "name": "🏹 Crossbow",
+    "cost": 1500,
+    "desc": "Deals 50 DMG. Medieval style.",
+    "type": "atk",
+    "val": 50
+  },
+  "grenade": {
+    "name": "💣 Frag Grenade",
+    "cost": 2000,
+    "desc": "Deals 55 DMG. Explosive power.",
+    "type": "atk",
+    "val": 55
+  },
+  "flamethrower": {
+    "name": "🔥 Flamethrower",
+    "cost": 3500,
+    "desc": "Deals 75 DMG. Burn them all.",
+    "type": "atk",
+    "val": 75
+  },
+  "sniper": {
+    "name": "🔭 AWP Sniper",
+    "cost": 5000,
+    "desc": "Deals 85 DMG. Almost lethal.",
+    "type": "atk",
+    "val": 85
+  },
+  "rpg": {
+    "name": "🚀 Golden RPG",
+    "cost": 12000,
+    "desc": "Deals 99 DMG. One shot kill.",
+    "type": "atk",
+    "val": 99
+  },
+  "airstrike": {
+    "name": "✈️ Tactical Airstrike",
+    "cost": 25000,
+    "desc": "Deals 150 DMG. Obliterate your enemy.",
+    "type": "atk",
+    "val": 150
+  },
+  "bunker": {
+    "name": "🧱 Titanium Bunker",
+    "cost": 2500,
+    "desc": "Immune to Storm Damage this round.",
+    "type": "buff"
+  },
+  "radar": {
+    "name": "📡 Satellite Link",
+    "cost": 4000,
+    "desc": "Guaranteed Supply Drop (+70 HP).",
+    "type": "buff",
+    "val": 70
+  }
+}

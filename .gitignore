@@ -1,0 +1,6 @@
+node_modules/
+.env
+snowstorm_data.json
+snowstorm_points.json
+settings.json
+package-lock.json
