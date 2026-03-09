@@ -1,6 +1,7 @@
 require('dotenv').config();
 const { Telegraf } = require('telegraf');
 const { ProxyAgent } = require('proxy-agent');
+const fetch = require('node-fetch'); // Use explicit fetch
 const { BOT_TOKEN } = require('./config');
 const startServer = require('./server');
 const { connectDB } = require('./db');
@@ -10,8 +11,10 @@ const proxyUrl = process.env.HTTPS_PROXY || process.env.HTTP_PROXY || process.en
 const botOptions = {};
 
 if (proxyUrl) {
+    const agent = new ProxyAgent(proxyUrl);
     botOptions.telegram = {
-        agent: new ProxyAgent(proxyUrl)
+        agent: agent,
+        fetch: (url, opts) => fetch(url, { ...opts, agent: agent })
     };
     console.log(`🔌 Using Universal Proxy: ${proxyUrl}`);
 }
