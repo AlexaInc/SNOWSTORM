@@ -1,25 +1,27 @@
 require('dotenv').config();
+
+// Global Node Proxy (Bootstrap MUST be loaded before fetch/telegraf)
+if (process.env.HTTPS_PROXY || process.env.HTTP_PROXY || process.env.ALL_PROXY) {
+    const proxyUrl = process.env.HTTPS_PROXY || process.env.HTTP_PROXY || process.env.ALL_PROXY;
+
+    // global-agent uses GLOBAL_AGENT_HTTP_PROXY
+    process.env.GLOBAL_AGENT_HTTP_PROXY = proxyUrl;
+    process.env.GLOBAL_AGENT_HTTPS_PROXY = proxyUrl;
+
+    // Disable TLS verification if the proxy uses self-signed certs which cause "TLS connection established" disconnects
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
+    require('global-agent/bootstrap');
+    console.log(`🌍 Mapped Global Proxy: ${proxyUrl}`);
+}
+
 const { Telegraf } = require('telegraf');
-const { ProxyAgent } = require('proxy-agent');
-const fetch = require('node-fetch'); // Use explicit fetch
 const { BOT_TOKEN } = require('./config');
 const startServer = require('./server');
 const { connectDB } = require('./db');
 const { loadMongoData, t, getLang } = require('./data');
 
-const proxyUrl = process.env.HTTPS_PROXY || process.env.HTTP_PROXY || process.env.ALL_PROXY;
-const botOptions = {};
-
-if (proxyUrl) {
-    const agent = new ProxyAgent(proxyUrl);
-    botOptions.telegram = {
-        agent: agent,
-        fetch: (url, opts) => fetch(url, { ...opts, agent: agent })
-    };
-    console.log(`🔌 Using Universal Proxy: ${proxyUrl}`);
-}
-
-const bot = new Telegraf(BOT_TOKEN, botOptions);
+const bot = new Telegraf(BOT_TOKEN);
 
 // Load Modules
 require('./shop')(bot);
