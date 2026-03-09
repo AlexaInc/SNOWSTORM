@@ -42,12 +42,21 @@ async function start() {
     console.log("🚀 Starting Web Leaderboard Server...");
     startServer();
 
-    console.log("🤖 Launching Telegram Bot...");
-    bot.launch();
+    try {
+        console.log("🤖 Launching Telegram Bot...");
+        await bot.launch();
+    } catch (e) {
+        console.error("❌ Telegram Bot failed to launch:", e.message);
+        console.error("Make sure your server/Hugging Face Space has internet access to api.telegram.org");
+    }
 }
 
 start();
 
 // Graceful Stop
-process.once('SIGINT', () => bot.stop('SIGINT'));
-process.once('SIGTERM', () => bot.stop('SIGTERM'));
+process.once('SIGINT', () => {
+    try { if (bot.botInfo) bot.stop('SIGINT') } catch (e) { }
+});
+process.once('SIGTERM', () => {
+    try { if (bot.botInfo) bot.stop('SIGTERM') } catch (e) { }
+});
