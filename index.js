@@ -1,19 +1,19 @@
 require('dotenv').config();
 const { Telegraf } = require('telegraf');
-const { HttpsProxyAgent } = require('https-proxy-agent');
+const { ProxyAgent } = require('proxy-agent');
 const { BOT_TOKEN } = require('./config');
 const startServer = require('./server');
 const { connectDB } = require('./db');
 const { loadMongoData, t, getLang } = require('./data');
 
-const proxyUrl = process.env.HTTPS_PROXY || process.env.HTTP_PROXY;
+const proxyUrl = process.env.HTTPS_PROXY || process.env.HTTP_PROXY || process.env.ALL_PROXY;
 const botOptions = {};
 
 if (proxyUrl) {
     botOptions.telegram = {
-        agent: new HttpsProxyAgent(proxyUrl)
+        agent: new ProxyAgent(proxyUrl)
     };
-    console.log(`🔌 Using Proxy: ${proxyUrl}`);
+    console.log(`🔌 Using Universal Proxy: ${proxyUrl}`);
 }
 
 const bot = new Telegraf(BOT_TOKEN, botOptions);
