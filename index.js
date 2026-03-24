@@ -1,19 +1,9 @@
 require('dotenv').config();
 
-// Global Node Proxy (Bootstrap MUST be loaded before fetch/telegraf)
-if (process.env.HTTPS_PROXY || process.env.HTTP_PROXY || process.env.ALL_PROXY) {
-    const proxyUrl = process.env.HTTPS_PROXY || process.env.HTTP_PROXY || process.env.ALL_PROXY;
-
-    // global-agent uses GLOBAL_AGENT_HTTP_PROXY
-    process.env.GLOBAL_AGENT_HTTP_PROXY = proxyUrl;
-    process.env.GLOBAL_AGENT_HTTPS_PROXY = proxyUrl;
-
-    // Disable TLS verification if the proxy uses self-signed certs which cause "TLS connection established" disconnects
-    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-
-    require('global-agent/bootstrap');
-    console.log(`🌍 Mapped Global Proxy: ${proxyUrl}`);
-}
+// Proxy System (loaded before any network imports) — ported from AlexaTG
+const proxyHelper = require('./utils/proxyHelper');
+proxyHelper.configureAxios();
+proxyHelper.configureGlobal();
 
 const { Telegraf } = require('telegraf');
 const { BOT_TOKEN } = require('./config');
@@ -64,16 +54,19 @@ async function start() {
 
     try {
         console.log("🤖 Launching Telegram Bot...");
-        // Add error handler before launch to catch polling errors
+        // Handle background polling errors
         bot.catch((err, ctx) => {
-            console.error(`❌ Ooops, encountered an error for ${ctx.updateType}`, err);
+            console.error(`❌ Background bot error for ${ctx.updateType}:`, err);
         });
 
-        await bot.launch();
-        console.log("✅ Bot is actively polling for messages!");
+        bot.launch().then(() => {
+            console.log("✅ Bot is actively polling for messages!");
+        }).catch((err) => {
+            console.error("❌ Fatal Error during Telegram Bot Polling:", err);
+            console.error("This usually means your BOT_TOKEN is invalid or another instance of the bot is running!");
+        });
     } catch (e) {
         console.error("❌ Telegram Bot failed to launch:", e.message);
-        console.error("Make sure your server/Hugging Face Space has internet access to api.telegram.org");
     }
 }
 
